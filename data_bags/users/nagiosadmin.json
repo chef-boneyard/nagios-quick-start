@@ -1,0 +1,9 @@
+{
+  "id": "nagiosadmin",
+  "groups": "sysadmin",
+  "htpasswd": "{SHA}/i0Kels0lRtuw8RhhPHtPq4ZRZ0=",
+  "nagios": {
+    "pager": "nagiosadmin_pager@example.com",
+    "email": "nagiosadmin@example.com"
+  }
+}
