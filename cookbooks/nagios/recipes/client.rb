@@ -44,11 +44,12 @@ service "nagios-nrpe-server" do
   supports :restart => true, :reload => true
 end
 
-cookbook_file "/usr/lib/nagios/plugins/check_mem.sh" do
-  source "plugins/check_mem.sh"
+remote_directory "/usr/lib/nagios/plugins" do
+  source "plugins"
   owner "nagios"
   group "nagios"
   mode 0755
+  files_mode 0755
 end
 
 template "/etc/nagios/nrpe.cfg" do
