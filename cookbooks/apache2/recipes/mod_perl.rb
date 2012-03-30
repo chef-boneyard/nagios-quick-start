@@ -1,6 +1,8 @@
 #
 # Cookbook Name:: apache2
-# Recipe:: python 
+# Recipe:: perl 
+#
+# adapted from the mod_python recipe by Jeremy Bingham
 #
 # Copyright 2008-2009, Opscode, Inc.
 #
@@ -19,14 +21,23 @@
 
 case node[:platform]
   when "debian", "ubuntu"
-    package "libapache2-mod-python" do
+    package "libapache2-mod-perl2" do
       action :install
     end
-  when "redhat", "centos", "scientific", "fedora", "amazon"
-    package "mod_python" do
+   package "libapache2-request-perl" do
+      action :install
+   end
+   package "apache2-mpm-prefork" do
+      action :install
+   end
+  when "centos", "redhat", "fedora", "amazon"
+    package "mod_perl" do
       action :install
       notifies :run, resources(:execute => "generate-module-list"), :immediately
     end
+    package "perl-libapreq2" do
+      action :install
+    end
 end
 
-apache_module "python"
+apache_module "perl"
